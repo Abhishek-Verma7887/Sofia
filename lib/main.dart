@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+
+import 'screens/login_page.dart';
+import 'screens/name_page.dart';
+import 'utils/sign_in.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
+
+  Future getUserInfo() async {
+    await getUser();
+    setState(() {});
+    print(uid);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sofia: yoga trainer',
+      home: (uid != null && authSignedIn != false) ? NamePage() : LoginPage(),
+    );
+  }
+}
