@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sofia/screens/gender_page.dart';
 import 'package:sofia/utils/sign_in.dart';
 
 String userName;
@@ -69,6 +70,7 @@ class _NamePageState extends State<NamePage> {
                       ),
                       child: TextField(
                         focusNode: textFocusNode,
+                        textInputAction: TextInputAction.next,
                         style: TextStyle(
                           color: Colors.deepOrangeAccent[700],
                           fontSize: 25,
@@ -79,13 +81,13 @@ class _NamePageState extends State<NamePage> {
                           textFocusNode.unfocus();
                           userName = textController.text;
                           print('DONE EDITING');
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) {
-                          //       return DashboardScreen();
-                          //     },
-                          //   ),
-                          // );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return GenderPage();
+                              },
+                            ),
+                          );
                         },
                         decoration: InputDecoration(
                           suffix: IconButton(
@@ -98,13 +100,13 @@ class _NamePageState extends State<NamePage> {
                               textFocusNode.unfocus();
                               userName = textController.text;
                               print('DONE EDITING');
-                              // Navigator.of(context).push(
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return DashboardScreen();
-                              //     },
-                              //   ),
-                              // );
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return GenderPage();
+                                  },
+                                ),
+                              );
                             },
                           ),
                           focusedBorder: UnderlineInputBorder(
