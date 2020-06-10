@@ -11,7 +11,7 @@ class AgePage extends StatefulWidget {
 }
 
 class _AgePageState extends State<AgePage> {
-  final textController = TextEditingController();
+  TextEditingController textController;
   FocusNode textFocusNode;
 
   String errorString;
@@ -29,7 +29,7 @@ class _AgePageState extends State<AgePage> {
   @override
   void initState() {
     super.initState();
-    textController.text = null;
+    textController = TextEditingController();
     textFocusNode = FocusNode();
   }
 
@@ -48,7 +48,7 @@ class _AgePageState extends State<AgePage> {
       }
     }
 
-    return null;
+    errorString = null;
   }
 
   bool isNumeric(String s) {
@@ -96,14 +96,19 @@ class _AgePageState extends State<AgePage> {
                     ),
                     controller: textController,
                     cursorColor: Colors.deepOrange,
+                    autofocus: false,
                     onChanged: (value) {
-                      textController.text = value;
-                      _validateString(textController.text);
+                      // setState(() {
+                      //   textController.text = value;
+                      // });
+
+                      _validateString(value);
                     },
                     onSubmitted: (value) {
                       textFocusNode.unfocus();
                       age = textController.text.trim();
                       print('DONE EDITING');
+                      print('AGE: $age');
                       // Navigator.of(context).push(
                       //   MaterialPageRoute(
                       //     builder: (context) {
@@ -123,6 +128,7 @@ class _AgePageState extends State<AgePage> {
                           textFocusNode.unfocus();
                           age = textController.text.trim();
                           print('DONE EDITING');
+                          print('AGE: $age');
                           // Navigator.of(context).push(
                           //   MaterialPageRoute(
                           //     builder: (context) {
