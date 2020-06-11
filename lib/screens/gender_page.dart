@@ -54,7 +54,7 @@ class _GenderPageState extends State<GenderPage> {
             // Color(0xFFffe6e1), --> color for the other cover
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(bottom: screenSize.height / 5),
+                padding: EdgeInsets.only(bottom: screenSize.height / 15),
                 height: screenSize.height - appBar.preferredSize.height,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -68,7 +68,7 @@ class _GenderPageState extends State<GenderPage> {
                         'QUOTE',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.lexendTera(
-                          fontSize: screenSize.height / 60,
+                          fontSize: screenSize.width / 30,
                           color: Colors.black26,
                         ),
                       ),
@@ -77,12 +77,12 @@ class _GenderPageState extends State<GenderPage> {
                       padding: EdgeInsets.only(
                           left: screenSize.width / 15,
                           right: screenSize.width / 15,
-                          bottom: screenSize.height / 50),
+                          bottom: screenSize.height / 60),
                       child: Text(
                         'Yoga is a mirror to look at ourselves from within.',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
-                          fontSize: screenSize.height / 50,
+                          fontSize: screenSize.width / 25,
                           color: Color(0xFF284e41),
                         ),
                       ),
@@ -102,7 +102,7 @@ class _GenderPageState extends State<GenderPage> {
                         quarterTurns: 1,
                         child: ToggleButtons(
                           splashColor: Colors.transparent,
-                          borderWidth: screenSize.width / 60,
+                          // borderWidth: screenSize.width / 60,
                           borderColor: Colors.transparent,
                           fillColor: Colors.black12,
                           disabledBorderColor: Colors.black,
@@ -114,13 +114,16 @@ class _GenderPageState extends State<GenderPage> {
                             RotatedBox(
                               quarterTurns: 3,
                               child: Padding(
-                                padding: EdgeInsets.all(
-                                  screenSize.width / 30,
+                                padding: EdgeInsets.only(
+                                  right: screenSize.width / 20,
+                                  left: screenSize.width / 20,
+                                  top: screenSize.height / 50,
+                                  bottom: screenSize.height / 50,
                                 ),
                                 child: Text(
                                   'MALE',
                                   style: TextStyle(
-                                    fontSize: screenSize.width / 12,
+                                    fontSize: screenSize.width / 18,
                                   ),
                                 ),
                               ),
@@ -128,13 +131,16 @@ class _GenderPageState extends State<GenderPage> {
                             RotatedBox(
                               quarterTurns: 3,
                               child: Padding(
-                                padding: EdgeInsets.all(
-                                  screenSize.width / 30,
+                                padding: EdgeInsets.only(
+                                  right: screenSize.width / 20,
+                                  left: screenSize.width / 20,
+                                  top: screenSize.height / 50,
+                                  bottom: screenSize.height / 50,
                                 ),
                                 child: Text(
                                   'FEMALE',
                                   style: TextStyle(
-                                    fontSize: screenSize.width / 12,
+                                    fontSize: screenSize.width / 18,
                                   ),
                                 ),
                               ),
@@ -142,13 +148,16 @@ class _GenderPageState extends State<GenderPage> {
                             RotatedBox(
                               quarterTurns: 3,
                               child: Padding(
-                                padding: EdgeInsets.all(
-                                  screenSize.width / 30,
+                                padding: EdgeInsets.only(
+                                  right: screenSize.width / 10,
+                                  left: screenSize.width / 10,
+                                  top: screenSize.height / 50,
+                                  bottom: screenSize.height / 50,
                                 ),
                                 child: Text(
                                   'NON BINARY',
                                   style: TextStyle(
-                                    fontSize: screenSize.width / 12,
+                                    fontSize: screenSize.width / 18,
                                   ),
                                 ),
                               ),
@@ -176,7 +185,7 @@ class _GenderPageState extends State<GenderPage> {
                     IconButton(
                       icon: Icon(
                         Icons.check_circle,
-                        size: screenSize.width / 10,
+                        size: screenSize.width / 12,
                         color: selectedGender != null
                             ? Color(0xFF284e41)
                             : Colors.black12,

@@ -81,7 +81,7 @@ class _AgePageState extends State<AgePage> {
                     'QUOTE',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.lexendTera(
-                      fontSize: screenSize.height / 60,
+                      fontSize: screenSize.width / 30,
                       color: Colors.black26,
                     ),
                   ),
@@ -95,7 +95,7 @@ class _AgePageState extends State<AgePage> {
                     'The yoga pose you avoid the most you need the most.',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.openSans(
-                      fontSize: screenSize.height / 50,
+                      fontSize: screenSize.width / 25,
                       color: Color(0xFF734435),
                     ),
                   ),

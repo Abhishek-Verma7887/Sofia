@@ -64,7 +64,7 @@ class _NamePageState extends State<NamePage> {
                         'QUOTE',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.lexendTera(
-                          fontSize: screenSize.height / 60,
+                          fontSize: screenSize.width / 30,
                           color: Colors.black26,
                         ),
                       ),
@@ -78,7 +78,7 @@ class _NamePageState extends State<NamePage> {
                         'Yoga teaches us to cure what need not be endured and endure what cannot be cured.',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.openSans(
-                          fontSize: screenSize.height / 50,
+                          fontSize: screenSize.width / 25,
                           color: Color(0xFFf87473),
                         ),
                       ),
