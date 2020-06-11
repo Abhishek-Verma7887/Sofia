@@ -15,6 +15,7 @@ class _AgePageState extends State<AgePage> {
   FocusNode textFocusNode;
 
   String errorString;
+  bool _isEditing = false;
 
   AppBar appBar = AppBar(
     centerTitle: true,
@@ -30,25 +31,22 @@ class _AgePageState extends State<AgePage> {
   void initState() {
     super.initState();
     textController = TextEditingController();
+    textController.text = null;
     textFocusNode = FocusNode();
   }
 
-  _validateString(String value) {
+  String _validateString(String value) {
     value = value.trim();
 
-    if (value != null) {
+    if (textController.text != null) {
       if (value.isEmpty) {
-        setState(() {
-          errorString = 'Age Can\'t Be Empty';
-        });
+        return 'Age Can\'t Be Empty';
       } else if (!isNumeric(value)) {
-        setState(() {
-          errorString = 'Age should be numeric';
-        });
+        return 'Age should be numeric';
       }
     }
 
-    errorString = null;
+    return null;
   }
 
   bool isNumeric(String s) {
@@ -67,6 +65,7 @@ class _AgePageState extends State<AgePage> {
         color: Color(0xFFfeafb6),
         // Color(0xFFffe6e1), --> color for the other cover
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
             height: sceeenSize.height - appBar.preferredSize.height,
             child: Column(
@@ -101,12 +100,18 @@ class _AgePageState extends State<AgePage> {
                       // setState(() {
                       //   textController.text = value;
                       // });
+                      setState(() {
+                        _isEditing = true;
+                      });
 
-                      _validateString(value);
+                      // _validateString(value);
                     },
                     onSubmitted: (value) {
                       textFocusNode.unfocus();
+                      _validateString(value);
                       age = textController.text.trim();
+                      age.contains('.') ? age = age.split('.')[0] : age = age;
+
                       print('DONE EDITING');
                       print('AGE: $age');
                       // Navigator.of(context).push(
@@ -127,6 +132,10 @@ class _AgePageState extends State<AgePage> {
                         onPressed: () {
                           textFocusNode.unfocus();
                           age = textController.text.trim();
+                          age.contains('.')
+                              ? age = age.split('.')[0]
+                              : age = age;
+
                           print('DONE EDITING');
                           print('AGE: $age');
                           // Navigator.of(context).push(
@@ -150,7 +159,9 @@ class _AgePageState extends State<AgePage> {
                           TextStyle(color: Color(0xFF734435), fontSize: 18),
                       hintText: 'Used for tracking your fitness',
                       hintStyle: TextStyle(color: Colors.black26, fontSize: 14),
-                      errorText: errorString,
+                      errorText: _isEditing
+                          ? _validateString(textController.text)
+                          : null,
                       errorStyle:
                           TextStyle(fontSize: 15, color: Colors.redAccent[800]),
                     ),
