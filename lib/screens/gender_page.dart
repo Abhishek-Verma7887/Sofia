@@ -7,6 +7,10 @@ import 'package:sofia/utils/sign_in.dart';
 String userName;
 
 class GenderPage extends StatefulWidget {
+  final String userName;
+
+  GenderPage({@required this.userName});
+
   @override
   _GenderPageState createState() => _GenderPageState();
 }
@@ -33,13 +37,6 @@ class _GenderPageState extends State<GenderPage> {
   void initState() {
     super.initState();
     textFocusNode = FocusNode();
-  }
-
-  String _validateString(String value) {
-    if (value.isEmpty) {
-      return 'Name Can\'t Be Empty';
-    }
-    return null;
   }
 
   @override
@@ -198,7 +195,10 @@ class _GenderPageState extends State<GenderPage> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return AgePage();
+                                    return AgePage(
+                                      userName: widget.userName,
+                                      gender: selectedGender,
+                                    );
                                   },
                                 ),
                               );

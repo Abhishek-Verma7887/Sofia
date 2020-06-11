@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,14 +7,25 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
 bool authSignedIn;
+bool detailsUploaded;
 String uid;
 String name;
 String email;
 String imageUrl;
 
+final CollectionReference mainCollection =
+    Firestore.instance.collection('sofia');
+
+// Use this for production
+// final DocumentReference documentReference = mainCollection.document('prod');
+
+// Use this for testing
+final DocumentReference documentReference = mainCollection.document('test');
+
 Future getUser() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   authSignedIn = prefs.getBool('auth') ?? false;
+  detailsUploaded = prefs.getBool('details_uploaded') ?? false;
 
   final FirebaseUser user = await _auth.currentUser();
 

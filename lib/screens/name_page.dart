@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sofia/screens/gender_page.dart';
 import 'package:sofia/utils/sign_in.dart';
 
-String userName;
-
 class NamePage extends StatefulWidget {
   @override
   _NamePageState createState() => _NamePageState();
@@ -14,6 +12,8 @@ class NamePage extends StatefulWidget {
 class _NamePageState extends State<NamePage> {
   final textController = TextEditingController(text: name.split(' ')[0]);
   FocusNode textFocusNode;
+
+  String _userName;
 
   @override
   void initState() {
@@ -107,12 +107,14 @@ class _NamePageState extends State<NamePage> {
                         cursorColor: Colors.deepOrange,
                         onSubmitted: (value) {
                           textFocusNode.unfocus();
-                          userName = textController.text;
+                          _userName = textController.text;
                           print('DONE EDITING');
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) {
-                                return GenderPage();
+                                return GenderPage(
+                                  userName: _userName,
+                                );
                               },
                             ),
                           );
@@ -126,12 +128,14 @@ class _NamePageState extends State<NamePage> {
                             ),
                             onPressed: () {
                               textFocusNode.unfocus();
-                              userName = textController.text;
+                              _userName = textController.text;
                               print('DONE EDITING');
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return GenderPage();
+                                    return GenderPage(
+                                      userName: _userName,
+                                    );
                                   },
                                 ),
                               );

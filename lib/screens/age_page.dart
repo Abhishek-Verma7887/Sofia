@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sofia/screens/gender_page.dart';
+import 'package:sofia/screens/home_page.dart';
+import 'package:sofia/utils/database.dart';
 import 'package:sofia/utils/sign_in.dart';
 
-String age;
-
 class AgePage extends StatefulWidget {
+  final String userName;
+  final String gender;
+
+  AgePage({@required this.userName, @required this.gender});
+
   @override
   _AgePageState createState() => _AgePageState();
 }
@@ -14,9 +19,13 @@ class AgePage extends StatefulWidget {
 class _AgePageState extends State<AgePage> {
   TextEditingController textController;
   FocusNode textFocusNode;
+  Database _database = Database();
+
+  int _age;
 
   String errorString;
   bool _isEditing = false;
+  bool _isStoring = false;
 
   AppBar appBar = AppBar(
     centerTitle: true,
@@ -55,6 +64,35 @@ class _AgePageState extends State<AgePage> {
       return false;
     }
     return double.tryParse(s) != null;
+  }
+
+  Future<void> _uploadData() async {
+    textFocusNode.unfocus();
+    setState(() {
+      _isStoring = true;
+    });
+
+    var ageString = textController.text.trim();
+    ageString.contains('.')
+        ? ageString = ageString.split('.')[0]
+        : ageString = ageString;
+
+    _age = int.parse(ageString);
+    print('DONE EDITING');
+    print('AGE: $_age');
+    await _database.storeUserData(
+      userName: widget.userName,
+      gender: widget.gender,
+      age: _age,
+    );
+    _isStoring = false;
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return HomePage();
+        },
+      ),
+    );
   }
 
   @override
@@ -114,6 +152,7 @@ class _AgePageState extends State<AgePage> {
                     bottom: screenSize.height / 10,
                   ),
                   child: TextField(
+                    enabled: !_isStoring,
                     focusNode: textFocusNode,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
@@ -134,47 +173,28 @@ class _AgePageState extends State<AgePage> {
 
                       // _validateString(value);
                     },
-                    onSubmitted: (value) {
-                      textFocusNode.unfocus();
-                      _validateString(value);
-                      age = textController.text.trim();
-                      age.contains('.') ? age = age.split('.')[0] : age = age;
-
-                      print('DONE EDITING');
-                      print('AGE: $age');
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(
-                      //     builder: (context) {
-                      //       return GenderPage();
-                      //     },
-                      //   ),
-                      // );
+                    onSubmitted: (value) async {
+                      await _uploadData().catchError(
+                        (e) => print('UPLOAD ERROR: $e'),
+                      );
                     },
                     decoration: InputDecoration(
-                      suffix: IconButton(
-                        icon: Icon(
-                          Icons.check_circle,
-                          size: 30,
-                          color: Color(0xFFc31304),
-                        ),
-                        onPressed: () {
-                          textFocusNode.unfocus();
-                          age = textController.text.trim();
-                          age.contains('.')
-                              ? age = age.split('.')[0]
-                              : age = age;
-
-                          print('DONE EDITING');
-                          print('AGE: $age');
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) {
-                          //       return GenderPage();
-                          //     },
-                          //   ),
-                          // );
-                        },
-                      ),
+                      suffix: _isStoring
+                          ? CircularProgressIndicator()
+                          : IconButton(
+                              icon: Icon(
+                                Icons.check_circle,
+                                size: 30,
+                                color: Color(0xFFc31304),
+                              ),
+                              onPressed: _isStoring
+                                  ? null
+                                  : () async {
+                                      await _uploadData().catchError(
+                                        (e) => print('UPLOAD ERROR: $e'),
+                                      );
+                                    },
+                            ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide:
                             BorderSide(color: Colors.deepOrangeAccent[700]),

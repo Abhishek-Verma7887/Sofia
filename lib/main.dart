@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sofia/screens/home_page.dart';
 
 import 'screens/login_page.dart';
 import 'screens/name_page.dart';
@@ -30,7 +31,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sofia: yoga trainer',
-      home: (uid != null && authSignedIn != false) ? NamePage() : LoginPage(),
+      home: (uid != null && authSignedIn != false)
+          ? detailsUploaded ? HomePage() : NamePage()
+          : LoginPage(),
     );
   }
 }
