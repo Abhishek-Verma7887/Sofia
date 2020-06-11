@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sofia/screens/gender_page.dart';
 import 'package:sofia/utils/sign_in.dart';
 
@@ -29,7 +30,7 @@ class _NamePageState extends State<NamePage> {
 
   @override
   Widget build(BuildContext context) {
-    var sceeenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       // appBar: AppBar(
       //   centerTitle: true,
@@ -55,6 +56,33 @@ class _NamePageState extends State<NamePage> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: screenSize.height / 80,
+                      ),
+                      child: Text(
+                        'QUOTE',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.lexendTera(
+                          fontSize: screenSize.height / 60,
+                          color: Colors.black26,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: screenSize.width / 15,
+                          right: screenSize.width / 15,
+                          bottom: screenSize.height / 50),
+                      child: Text(
+                        'Yoga teaches us to cure what need not be endured and endure what cannot be cured.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.openSans(
+                          fontSize: screenSize.height / 50,
+                          color: Color(0xFFf87473),
+                        ),
+                      ),
+                    ),
                     Flexible(
                       child: SvgPicture.asset(
                         'assets/images/cover.svg',
@@ -64,9 +92,9 @@ class _NamePageState extends State<NamePage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        right: sceeenSize.width / 10,
-                        left: sceeenSize.width / 10,
-                        bottom: sceeenSize.height / 20,
+                        right: screenSize.width / 10,
+                        left: screenSize.width / 10,
+                        bottom: screenSize.height / 20,
                       ),
                       child: TextField(
                         focusNode: textFocusNode,

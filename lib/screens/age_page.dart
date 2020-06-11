@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sofia/screens/gender_page.dart';
 import 'package:sofia/utils/sign_in.dart';
 
@@ -58,7 +59,7 @@ class _AgePageState extends State<AgePage> {
 
   @override
   Widget build(BuildContext context) {
-    var sceeenSize = MediaQuery.of(context).size;
+    var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: appBar,
       body: Container(
@@ -67,23 +68,50 @@ class _AgePageState extends State<AgePage> {
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Container(
-            height: sceeenSize.height - appBar.preferredSize.height,
+            height: screenSize.height - appBar.preferredSize.height,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: screenSize.height / 80,
+                  ),
+                  child: Text(
+                    'QUOTE',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lexendTera(
+                      fontSize: screenSize.height / 60,
+                      color: Colors.black26,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: screenSize.width / 15,
+                      right: screenSize.width / 15,
+                      bottom: screenSize.height / 50),
+                  child: Text(
+                    'The yoga pose you avoid the most you need the most.',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.openSans(
+                      fontSize: screenSize.height / 50,
+                      color: Color(0xFF734435),
+                    ),
+                  ),
+                ),
                 Flexible(
                   child: SvgPicture.asset(
                     'assets/images/intro_3.svg',
-                    width: sceeenSize.width,
+                    width: screenSize.width,
                     semanticsLabel: 'Cover Image',
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: sceeenSize.width / 10,
-                    left: sceeenSize.width / 10,
-                    bottom: sceeenSize.height / 10,
+                    right: screenSize.width / 10,
+                    left: screenSize.width / 10,
+                    bottom: screenSize.height / 10,
                   ),
                   child: TextField(
                     focusNode: textFocusNode,
