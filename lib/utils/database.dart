@@ -109,10 +109,21 @@ class Database {
 
   uploadTracks() async {
     // beginners
-
+    int id = 1;
     poses.forEach((key, value) async {
       DocumentReference documentReferencer =
           documentReference.collection('tracks').document(key);
+
+      Map<String, dynamic> name = <String, dynamic>{
+        "id": id,
+        "name": key,
+      };
+      id = id + 1;
+
+      await documentReferencer.setData(name).whenComplete(() {
+        print("$key track added to the database");
+      }).catchError((e) => print(e));
+
       value.forEach((element) async {
         DocumentReference poseDocs = documentReferencer
             .collection('poses')
@@ -128,10 +139,28 @@ class Database {
         }).catchError((e) => print(e));
       });
     });
-
-    // for (List<Set<String>> eachPose in poses)
-    //   documentReferencer.collection('poses').document();
   }
 
-  retrieveTracks() {}
+  // Future getProducts() async {
+  //   QuerySnapshot productQuery =
+  //       await documentReference.collection('departments').getDocuments();
+
+  //   return productQuery.documents;
+  // }
+
+  retrieveUserInfo() async {
+    DocumentSnapshot userInfo =
+        await documentReference.collection('user_info').document(uid).get();
+
+    return userInfo;
+  }
+
+  retrieveTracks() async {
+    QuerySnapshot tracksQuery = await documentReference
+        .collection('tracks')
+        .orderBy('id', descending: false)
+        .getDocuments();
+
+    return tracksQuery.documents;
+  }
 }
