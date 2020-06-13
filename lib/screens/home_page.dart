@@ -24,23 +24,61 @@ class _HomePageState extends State<HomePage> {
   generateChildren(var screenSize, String trackName) {
     result.add(
       Container(
-        color: Colors.white,
+        color: Colors.transparent,
         child: Padding(
           padding: EdgeInsets.only(
             left: screenSize.width / 20,
             right: screenSize.width / 20,
             bottom: screenSize.height / 30,
           ),
-          child: Container(
-            height: screenSize.height / 10,
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              color: Color(0xFFffe5de),
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
+          child: Card(
+            elevation: 3,
+            shadowColor: Color(0xFFffc7b8),
+            color: Color(0xFFffe5de),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(screenSize.width / 10),
+            ),
+            // height: screenSize.height / 10,
+            // width: double.maxFinite,
+            // decoration: BoxDecoration(
+            //   color: Color(0xFFffe5de),
+            //   borderRadius: BorderRadius.all(
+            //     Radius.circular(20),
+            //   ),
+            // ),
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: screenSize.height / 80,
+                bottom: screenSize.height / 60,
+                left: screenSize.width / 15,
+                right: screenSize.width / 20,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        trackName.toUpperCase(),
+                        style: GoogleFonts.openSans(
+                          fontSize: screenSize.width / 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: screenSize.height / 5,
+                    width: screenSize.height / 5,
+                    child: Image.asset('assets/images/$trackName.png'),
+                  )
+                ],
               ),
             ),
-            child: Text(trackName),
           ),
         ),
       ),
@@ -69,7 +107,7 @@ class _HomePageState extends State<HomePage> {
               Widget _nameView() {
                 return Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xFFFFF3F0),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(20),
                       bottomRight: Radius.circular(20),
@@ -100,25 +138,54 @@ class _HomePageState extends State<HomePage> {
                     right: screenSize.width / 20,
                     bottom: screenSize.height / 30,
                   ),
-                  child: Container(
-                    height: screenSize.height / 3,
-                    width: double.maxFinite,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFffe5de),
-                      // border: Border.all(
-                      //   color: Colors.red[500],
-                      // ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(screenSize.width / 10),
-                      ),
+                  child: Card(
+                    elevation: 3,
+                    shadowColor: Color(0xFFffc7b8),
+                    color: Color(0xFFffe5de),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(screenSize.width / 10),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.only(bottom: screenSize.height / 30),
+                      padding: EdgeInsets.only(
+                        top: screenSize.height / 60,
+                        bottom: screenSize.height / 30,
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
-                          Text(name),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: screenSize.height / 80,
+                              bottom: screenSize.height / 60,
+                              left: screenSize.width / 80,
+                              right: screenSize.width / 20,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: screenSize.width * 0.50,
+                                  child: Center(
+                                    child: Text(
+                                      name.toUpperCase(),
+                                      style: GoogleFonts.openSans(
+                                        fontSize: screenSize.width / 20,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Image.asset('assets/images/$name.png'),
+                                )
+                              ],
+                            ),
+                          ),
                           SizedBox(
                             width: screenSize.width * 0.80,
                             child: FlatButton(
@@ -158,6 +225,22 @@ class _HomePageState extends State<HomePage> {
               result.add(_nameView());
               result.add(SizedBox(height: screenSize.height / 30));
               result.add(_beginnersTrack());
+              result.add(Padding(
+                padding: EdgeInsets.only(
+                  bottom: screenSize.height / 40,
+                ),
+                child: Center(
+                  child: Text(
+                    'EXPLORE',
+                    style: TextStyle(
+                      letterSpacing: 3,
+                      fontWeight: FontWeight.bold,
+                      fontSize: screenSize.width / 25,
+                      color: Colors.black54
+                    ),
+                  ),
+                ),
+              ));
 
               for (int i = 1; i < snapshot.data.length; i++) {
                 String trackName = snapshot.data[i].data['name'];
@@ -165,7 +248,7 @@ class _HomePageState extends State<HomePage> {
               }
 
               return Container(
-                color: Colors.white,
+                color: Color(0xFFFFF3F0),
                 child: ListView(
                   physics: BouncingScrollPhysics(),
                   children: result,
