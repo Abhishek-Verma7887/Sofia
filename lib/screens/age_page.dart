@@ -180,7 +180,11 @@ class _AgePageState extends State<AgePage> {
                     },
                     decoration: InputDecoration(
                       suffix: _isStoring
-                          ? CircularProgressIndicator()
+                          ? CircularProgressIndicator(
+                              valueColor: new AlwaysStoppedAnimation<Color>(
+                                Colors.redAccent[800],
+                              ),
+                            )
                           : IconButton(
                               icon: Icon(
                                 Icons.check_circle,
