@@ -46,3 +46,5 @@ android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 android/.project
 .metadata
+ios/Flutter/.last_build_id
+android/.settings/org.eclipse.buildship.core.prefs
