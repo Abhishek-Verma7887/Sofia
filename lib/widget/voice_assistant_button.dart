@@ -1,5 +1,10 @@
+import 'dart:io';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sofia/speech/output_speech.dart';
 
 class VoiceAssistantButton extends StatefulWidget {
   @override
@@ -7,23 +12,94 @@ class VoiceAssistantButton extends StatefulWidget {
 }
 
 class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
+  PersistentBottomSheetController _controller;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  FlutterTts flutterTts;
+
+  String _assistantText = '';
+  String _userText = '';
+
+  dynamic languages;
+  String language;
+  double volume = 0.6;
+  double pitch = 0.9;
+  double rate = 0.5;
+
   bool _isOpen = true;
   IconData fabIcon = Icons.mic;
+
+  // Future _speak() async {
+  //   var result = await flutterTts.speak("Hello World");
+  //   if (result == 1) setState(() => ttsState = TtsState.playing);
+  // }
+
+  Future _speak(String speechText) async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+
+    // _controller.setState(() {
+    //   _assistantText = speechText;
+    // });
+
+    await flutterTts.speak(speechText);
+
+    // if (speechText != null) {
+    //   if (speechText.isNotEmpty) {
+    //     await flutterTts.speak(speechText);
+    //   }
+    // }
+    // await Future.delayed(Duration(seconds: 4));
+  }
+
+  Future _pause() async {
+    await flutterTts.pause();
+  }
+
+  Future _stop() async {
+    await flutterTts.stop();
+  }
+
+  Future _getLanguages() async {
+    languages = await flutterTts.getLanguages;
+    if (languages != null) setState(() => languages);
+  }
+
+  initTts() {
+    flutterTts = FlutterTts();
+
+    _getLanguages();
+  }
+
+  @override
+  initState() {
+    super.initState();
+    initTts();
+  }
 
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return FloatingActionButton(
       heroTag: 'voice_assistant',
-      onPressed: () {
+      onPressed: () async {
         setState(() {
           _isOpen = _isOpen == false ? true : false;
-          _isOpen ? fabIcon = Icons.mic : fabIcon = Icons.stop;
+          _assistantText = '';
         });
+
+        if (_isOpen) {
+          fabIcon = Icons.mic;
+          _stop();
+        } else {
+          fabIcon = Icons.stop;
+        }
+
         if (_isOpen) {
           Navigator.of(context).pop();
         } else {
-          showBottomSheet(
+          _controller = showBottomSheet(
             elevation: 5,
             context: context,
             builder: (context) => AnimatedContainer(
@@ -67,7 +143,7 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
                                   right: screenSize.width / 5,
                                 ),
                                 child: Text(
-                                  'Hi there! I am Sofia. Let\'s get started with the beginners track.',
+                                  _assistantText,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -79,7 +155,7 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
                                 padding:
                                     EdgeInsets.only(left: screenSize.width / 5),
                                 child: Text(
-                                  'Hi there! I am Sofia. ',
+                                  _userText,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 16),
                                 ),
@@ -95,6 +171,48 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
               height: screenSize.height * 0.30,
             ),
           );
+
+          await _speak('');
+          flutterTts.setCompletionHandler(() async {
+            _controller.setState(() {
+              _assistantText = greetings1;
+            });
+            await Future.delayed(Duration(milliseconds: 600));
+            await _speak(greetings1);
+            flutterTts.setCompletionHandler(() async {
+              _controller.setState(() {
+                _assistantText = greetings2;
+              });
+              await Future.delayed(Duration(milliseconds: 600));
+              await _speak(greetings2);
+              flutterTts.setCompletionHandler(() async {
+                _controller.setState(() {
+                  _assistantText = askToStartWithBeginners;
+                });
+                await Future.delayed(Duration(milliseconds: 600));
+                await _speak(askToStartWithBeginners);
+                flutterTts.setCompletionHandler(() async {
+                  flutterTts.stop();
+                });
+              });
+            });
+          });
+
+          // flutterTts.getVoices;
+
+          // await _speak(greetings2);
+          // flutterTts.setCompletionHandler(() async {
+          //   _controller.setState(() {
+          //     _assistantText = greetings2;
+          //   });
+          // });
+
+          // await _speak(askToStartWithBeginners);
+          // flutterTts.setCompletionHandler(() async {
+          //   _controller.setState(() {
+          //     _assistantText = askToStartWithBeginners;
+          //   });
+          // });
         }
       },
       backgroundColor: Colors.pinkAccent[700],

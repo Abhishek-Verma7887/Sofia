@@ -20,6 +20,7 @@ dependencies:
   google_fonts: ^1.1.0
   websafe_svg: ^1.1.0
   font_awesome_flutter: ^8.8.1
+  flutter_tts: ^1.2.2
 
 dev_dependencies:
   flutter_test:
