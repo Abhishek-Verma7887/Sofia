@@ -163,4 +163,14 @@ class Database {
 
     return tracksQuery.documents;
   }
+
+  retrievePoses({@required String trackName}) async {
+    QuerySnapshot posesQuery = await documentReference
+        .collection('tracks')
+        .document(trackName)
+        .collection('poses')
+        .getDocuments();
+
+    return posesQuery.documents;
+  }
 }
