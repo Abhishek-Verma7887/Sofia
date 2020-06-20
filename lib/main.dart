@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:sofia/screens/home_page.dart';
 
@@ -5,9 +6,19 @@ import 'screens/login_page.dart';
 import 'screens/name_page.dart';
 import 'utils/sign_in.dart';
 
-void main() {
+List<CameraDescription> cameras = [];
+void main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    cameras = await availableCameras();
+  } on CameraException catch (e) {
+    logError(e.code, e.description);
+  }
   runApp(MyApp());
 }
+
+void logError(String code, String message) =>
+    print('Error: $code\nError Message: $message');
 
 class MyApp extends StatefulWidget {
   @override
