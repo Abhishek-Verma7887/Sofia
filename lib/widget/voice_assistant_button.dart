@@ -2,9 +2,11 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:math';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sofia/screens/predictor_page.dart';
 import 'package:sofia/speech/output_speech.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -167,7 +169,11 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
         });
         _speak(startWithTrack);
         flutterTts.setCompletionHandler(() async {
-          // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ),);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => PredictorPage(),
+            ),
+          );
         });
       } else if (_userText == 'No') {
         stopListening();
