@@ -1,10 +1,14 @@
 import 'dart:io';
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sofia/speech/output_speech.dart';
+import 'package:speech_to_text/speech_recognition_error.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 class VoiceAssistantButton extends StatefulWidget {
   @override
@@ -13,8 +17,10 @@ class VoiceAssistantButton extends StatefulWidget {
 
 class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
   PersistentBottomSheetController _controller;
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  final SpeechToText speech = SpeechToText();
+
+  // For text to speech
   FlutterTts flutterTts;
 
   String _assistantText = '';
@@ -22,17 +28,25 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
 
   dynamic languages;
   String language;
-  double volume = 0.6;
-  double pitch = 0.9;
-  double rate = 0.5;
+  double volume = 0.8;
+  double pitch = 1;
+  double rate = Platform.isAndroid ? 0.8 : 0.6;
 
   bool _isOpen = true;
   IconData fabIcon = Icons.mic;
 
-  // Future _speak() async {
-  //   var result = await flutterTts.speak("Hello World");
-  //   if (result == 1) setState(() => ttsState = TtsState.playing);
-  // }
+  // For speech to text
+  bool _hasSpeech = false;
+  double level = 0.0;
+  double minSoundLevel = 50000;
+  double maxSoundLevel = -50000;
+  String lastWords = "";
+  String lastError = "";
+  String lastStatus = "";
+  String _currentLocaleId = "";
+  List<LocaleName> _localeNames = [];
+
+  bool _isListening = false;
 
   Future _speak(String speechText) async {
     await flutterTts.setVolume(volume);
@@ -72,10 +86,151 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
     _getLanguages();
   }
 
+  Future<void> initSpeechState() async {
+    bool hasSpeech = await speech.initialize(
+      onError: errorListener,
+      onStatus: statusListener,
+    );
+
+    if (hasSpeech) {
+      _localeNames = await speech.locales();
+
+      var systemLocale = await speech.systemLocale();
+      _currentLocaleId = systemLocale.localeId;
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _hasSpeech = hasSpeech;
+    });
+  }
+
+  Future<void> startListening() async {
+    _isListening = true;
+    lastWords = "";
+    lastError = "";
+    await speech.listen(
+      onResult: resultListener,
+      listenFor: Duration(seconds: 10),
+      localeId: _currentLocaleId,
+      onSoundLevelChange: soundLevelListener,
+      cancelOnError: true,
+      partialResults: true,
+    );
+    setState(() {});
+  }
+
+  Future<void> stopListening() async {
+    await speech.stop();
+    setState(() {
+      level = 0.0;
+    });
+  }
+
+  void cancelListening() {
+    speech.cancel();
+    setState(() {
+      level = 0.0;
+    });
+  }
+
+  void soundLevelListener(double level) {
+    minSoundLevel = min(minSoundLevel, level);
+    maxSoundLevel = max(maxSoundLevel, level);
+    // print("sound level $level: $minSoundLevel - $maxSoundLevel ");
+    setState(() {
+      this.level = level;
+    });
+  }
+
+  void resultListener(SpeechRecognitionResult result) {
+    setState(() {
+      lastWords = "${result.recognizedWords} - ${result.finalResult}";
+    });
+    _controller.setState(() {
+      String input = lastWords.split(' - ')[0];
+      _userText = input[0].toUpperCase() + input.substring(1);
+    });
+    print(lastWords);
+    print('USER INPUT: $_userText');
+
+    // To check if the speech was recognized
+    // with good probability
+    if (result.finalResult && !_isListening) {
+      stopListening();
+      // Checking the recognized words
+      if (_userText == 'Yes') {
+        stopListening();
+        _controller.setState(() {
+          _assistantText = startWithTrack;
+        });
+        _speak(startWithTrack);
+        flutterTts.setCompletionHandler(() async {
+          // Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ),);
+        });
+      } else if (_userText == 'No') {
+        stopListening();
+        _controller.setState(() {
+          _assistantText = exploreTracks;
+        });
+        _speak(exploreTracks);
+        flutterTts.setCompletionHandler(() async {
+          Navigator.of(context).pop();
+          setState(() {
+            fabIcon = Icons.mic;
+          });
+        });
+      } else {
+        _controller.setState(() {
+          _assistantText = notRecognized;
+        });
+        _speak(notRecognized);
+        flutterTts.setCompletionHandler(() async {
+          _hasSpeech ? null : await initSpeechState();
+          !_hasSpeech || speech.isListening ? null : await startListening();
+        });
+      }
+    } else {
+      // If speech not recognized
+      // stopListening();
+      // _controller.setState(() {
+      //   _assistantText = notRecognized;
+      //   _speak(notRecognized);
+      // });
+    }
+  }
+
+  void errorListener(SpeechRecognitionError error) {
+    print("Received error status: $error, listening: ${speech.isListening}");
+    // setState(() {
+    //   lastError = "${error.errorMsg} - ${error.permanent}";
+    // });
+  }
+
+  void statusListener(String status) {
+    print(
+      "Received listener status: $status, listening: ${speech.isListening}",
+    );
+    setState(() {
+      lastStatus = "$status";
+      // speech.isListening ? _isListening = true : _isListening = false;
+    });
+
+    _controller.setState(() {
+      speech.isListening ? _isListening = true : _isListening = false;
+    });
+  }
+
   @override
   initState() {
     super.initState();
     initTts();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -106,14 +261,15 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
               duration: Duration(milliseconds: 300),
               decoration: BoxDecoration(
                 color: Colors.black87,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
                 ),
               ),
               child: Container(
                 child: Padding(
                   padding: EdgeInsets.only(
-                    bottom: screenSize.height / 20,
+                    // bottom: screenSize.height / 20,
                     left: screenSize.width / 30,
                     right: screenSize.width / 30,
                   ),
@@ -157,11 +313,26 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
                                 child: Text(
                                   _userText,
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 16),
+                                      color: Colors.white54, fontSize: 16),
                                 ),
                               ),
                             )
                           ],
+                        ),
+                      ),
+                      Visibility(
+                        maintainAnimation: true,
+                        maintainSize: true,
+                        maintainState: true,
+                        visible: _isListening,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: screenSize.height / 40),
+                          child: LinearProgressIndicator(
+                            backgroundColor: Colors.black12,
+                            valueColor: new AlwaysStoppedAnimation<Color>(
+                              Colors.grey[700],
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -192,7 +363,16 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
                 await Future.delayed(Duration(milliseconds: 600));
                 await _speak(askToStartWithBeginners);
                 flutterTts.setCompletionHandler(() async {
-                  flutterTts.stop();
+                  await flutterTts.stop();
+                  _hasSpeech ? null : await initSpeechState();
+                  !_hasSpeech || speech.isListening
+                      ? null
+                      : await startListening().whenComplete(() {
+                          // _controller.setState(() {
+                          //   _userText = lastWords;
+                          //   print(lastWords);
+                          // });
+                        });
                 });
               });
             });
