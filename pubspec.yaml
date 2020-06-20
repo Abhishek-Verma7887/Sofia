@@ -22,6 +22,7 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   flutter_tts: ^1.2.2
   speech_to_text: ^2.2.0
+  showcaseview: ^0.1.5
 
 dev_dependencies:
   flutter_test:
