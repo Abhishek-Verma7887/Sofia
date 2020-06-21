@@ -1,6 +1,11 @@
 # Sofia
 
+<p align="center">
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
+</p>
+
 A new Flutter project.
+
 
 # About
 
