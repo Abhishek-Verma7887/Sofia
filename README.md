@@ -5,7 +5,7 @@ A new Flutter project.
 # Screenshots
 
 <p align="center">
-  <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_login.png" alt="Sofia Login" />
+  <img width="400" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_login.png" alt="Sofia Login" />
 </p>
 
 ## Getting Started
