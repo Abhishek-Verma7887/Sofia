@@ -1,9 +1,10 @@
 # Sofia
 
-
 <p align="center">
   <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
 </p>
+
+<a href="https://www.youtube.com/watch?v=9QGC_ksfLls"><h3 align="center">Video Demo of the app in action</h4></a>
 
 **Sofia** is your personal AI powered Yoga instructor, allowing you to harness the benefits of yoga from any place you want.
 
