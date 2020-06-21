@@ -37,7 +37,7 @@
 
 <p align="center">
   <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_track.png" alt="Sofia Track" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_pose_1.png" alt="Sofia Pose 1" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/tri_pose_1.png" alt="Sofia Pose 1" />
   <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_pose_2.png" alt="Sofia Pose 2" />
 </p>
 
