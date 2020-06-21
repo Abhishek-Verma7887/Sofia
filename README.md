@@ -1,11 +1,13 @@
-# sofia
+# Sofia
 
 A new Flutter project.
 
 # Screenshots
 
 <p align="center">
-  <img width="400" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_login.png" alt="Sofia Login" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_login.png" alt="Sofia Login" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_name.png" alt="Sofia Name" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_age.png" alt="Sofia Age" />
 </p>
 
 ## Getting Started
