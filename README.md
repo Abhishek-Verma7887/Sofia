@@ -5,6 +5,10 @@
   <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
 </p>
 
+**Sofia** is your personal AI powered Yoga instructor, allowing you to harness the benefits of yoga from any place you want.
+
+The app is built using a cross-platform framework called **Flutter**, so it can run on both **iOS** and **Android**.
+
 # Screenshots
 
 <p align="center">
