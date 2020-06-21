@@ -1,9 +1,12 @@
 # Sofia
 
-
 <p align="center">
   <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
 </p>
+
+<a href="https://www.youtube.com/watch?v=9QGC_ksfLls"><h3 align="center">Video Demo of the app in action</h4></a>
+
+<a href="https://drive.google.com/file/d/1udM3YbRlCG0A5WJ7hXSH6OqAYvxLBVGQ/view?usp=sharing"><h4 align="center">Download the APK here</h4></a>
 
 **Sofia** is your personal AI powered Yoga instructor, allowing you to harness the benefits of yoga from any place you want.
 
@@ -67,9 +70,9 @@ We have gamified the app to let the users enjoy it more. They are awarded stars 
 
 - **Specifically designed yoga tracks/playlists** which are suited to the user's health issues, creating a more personalized experience
 
-## How is PoseAI diffrent from all the applications out there
+## How is Sofia diffrent from all the applications out there
 
-Why would you choose PoseAI? Simply because no other app out there implements **real time pose prediction technology**. Every time you are stuck on a step or an yogaasana, our PoseAI waits for you to complete it, and only then it gives intructions for the next asana, just like a personal yoga instructor who attends to you real time.
+Why would you choose Sofia? Simply because no other app out there implements **real time pose prediction technology**. Every time you are stuck on a step or an yogaasana, Sofia waits for you to complete it, and only then it gives intructions for the next asana, just like a personal yoga instructor who attends to you real time.
 
 ## Research proven benefits of yoga :
 
@@ -109,9 +112,7 @@ Yoga to have a positive effect on cardiovascular risk factors: It helped lower b
 Migraine is a neurological disorder that causes recurring headaches ranging from moderate to high intensity. Yoga is a side-effect-free method to fight migraine. 
 
 - ### **ASTHMA**
-Yoga can help increase breath and body awareness, slow your respiratory rate, and promote calm and relieve stress — all of which are beneficial for people who have asthma,
-
-
+Yoga can help increase breath and body awareness, slow your respiratory rate, and promote calm and relieve stress — all of which are beneficial for people who have asthma.
 
 # License
 
