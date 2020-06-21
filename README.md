@@ -7,7 +7,19 @@
 
 **Sofia** is your personal AI powered Yoga instructor, allowing you to harness the benefits of yoga from any place you want.
 
-The app is built using a cross-platform framework called **Flutter**, so it can run on both **iOS** and **Android**.
+* The app is built using a cross-platform framework called **Flutter**, so it can run on both **iOS** and **Android**.
+
+* For authentication, we have two options:
+  * **Firebase** API
+  * **Auth0** API
+  
+* **Cloud Firestore** is used for storing the user-info and the track data.
+
+* **Firebase Storage** is used for the storage of the pose videos.
+
+* **Google TTS** API is used for speech output.
+
+* **TFLite** model is used for pose recognition.
 
 # Screenshots
 
