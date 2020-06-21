@@ -35,6 +35,12 @@
   <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_voice.png" alt="Sofia Voice" />
 </p>
 
+<p align="center">
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_track.png" alt="Sofia Track" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_pose_1.png" alt="Sofia Pose 1" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_pose_2.png" alt="Sofia Pose 2" />
+</p>
+
 # About
 
 In this hectic lifestyle, we all get so busy with our daily schedule & this is where we always forget to take care of ourselves. It is important for us to take care of our body and mind as well. This is where yoga comes into play.
