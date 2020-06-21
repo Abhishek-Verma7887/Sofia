@@ -11,9 +11,22 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="sofia"
         android:icon="@mipmap/ic_launcher">
+        <activity 
+            android:name="io.flutter.plugins.flutterauth0.AuthenticationReceiver"
+            android:parentActivityName="com.example.flutterauth0.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="dev-3n1kko-k.us.auth0.com"
+                    android:pathPrefix="/android/com.souvikbiswas.sofia/callback"
+                    android:scheme="com.souvikbiswas.sofia" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"

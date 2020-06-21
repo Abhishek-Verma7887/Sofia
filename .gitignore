@@ -50,3 +50,7 @@ ios/Flutter/.last_build_id
 android/.settings/org.eclipse.buildship.core.prefs
 .vscode/settings.json
 .VSCodeCounter
+
+
+# Secrets
+lib/secrets.dart
