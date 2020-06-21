@@ -2,11 +2,22 @@
 
 
 <p align="center">
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
+  <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
 </p>
 
+# Screenshots
 
-A new Flutter project.
+<p align="center">
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_auth.png" alt="Sofia Login" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_name.png" alt="Sofia Name" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_gender.png" alt="Sofia Gender" />
+</p>
+
+<p align="center">
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_age.png" alt="Sofia Age" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_home.png" alt="Sofia Home" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_voice.png" alt="Sofia Voice" />
+</p>
 
 # About
 
@@ -23,21 +34,6 @@ Sofia will let everyone practise yoga. There are yoga tracks for beginners to Po
 Most important part of any kind of exercise you do while watching a video is the posture. Maintaining correct posture while exercising is essential, as wrong postures can lead to body problems. Sofia recognizes in real time. As you follow the video and reach an intermediate step in each pose, it analyses the posture and lets you proceed only when you complete the step successfully.
 
 We have gamified the app to let the users enjoy it more. They are awarded stars as points based on how good the accuracy of their pose is once they complete and progress through each step in the track. This ensures a fun and exciting approach to perfecting yoga postures.
-
-# Screenshots
-
-<p align="center">
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_auth.png" alt="Sofia Login" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_name.png" alt="Sofia Name" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_gender.png" alt="Sofia Gender" />
-</p>
-
-<p align="center">
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_age.png" alt="Sofia Age" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_home.png" alt="Sofia Home" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_voice.png" alt="Sofia Voice" />
-</p>
-
 
 ## Features
 
