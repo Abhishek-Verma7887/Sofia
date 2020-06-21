@@ -7,7 +7,13 @@ A new Flutter project.
 <p align="center">
   <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_login.png" alt="Sofia Login" />
   <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_name.png" alt="Sofia Name" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_gender.png" alt="Sofia Gender" />
+</p>
+
+<p align="center">
   <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_age.png" alt="Sofia Age" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_home.png" alt="Sofia Home" />
+  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_voice.png" alt="Sofia Voice" />
 </p>
 
 ## Getting Started
