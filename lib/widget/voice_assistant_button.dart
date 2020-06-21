@@ -169,6 +169,7 @@ class _VoiceAssistantButtonState extends State<VoiceAssistantButton> {
         });
         _speak(startWithTrack);
         flutterTts.setCompletionHandler(() async {
+          Navigator.of(context).pop();
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => PredictorPage(),
