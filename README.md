@@ -1,9 +1,5 @@
 # Sofia
 
-A new Flutter project.
-
-# About
-
 In this hectic lifestyle, we all get so busy with our daily schedule & this is where we always forget to take care of ourselves. It is important for us to take care of our body and mind as well. This is where yoga comes into play.
 
 Practitioners tout yoga for its mind-body benefits—flexibility, toned muscles, reduced stress, among others. More recently, scientists have begun to test yoga's effect on serious medical conditions. The results have been impressive enough that investigators expect yoga will soon become part of the standard treatment for a number of disorders.
