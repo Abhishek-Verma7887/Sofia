@@ -1,5 +1,3 @@
-# Sofia
-
 <p align="center">
   <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
 </p>
