@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
+  <img src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia.png" alt="Sofia Desc" />
 </p>
 
 <a href="https://www.youtube.com/watch?v=9QGC_ksfLls"><h3 align="center">Video Demo of the app in action</h4></a>
@@ -25,21 +25,21 @@
 # Screenshots
 
 <p align="center">
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_auth.png" alt="Sofia Login" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_name.png" alt="Sofia Name" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_gender.png" alt="Sofia Gender" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_auth.png" alt="Sofia Login" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_name.png" alt="Sofia Name" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_gender.png" alt="Sofia Gender" />
 </p>
 
 <p align="center">
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_age.png" alt="Sofia Age" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_home.png" alt="Sofia Home" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_voice.png" alt="Sofia Voice" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_age.png" alt="Sofia Age" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_home.png" alt="Sofia Home" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_voice.png" alt="Sofia Voice" />
 </p>
 
 <p align="center">
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/sofia_track.png" alt="Sofia Track" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/tri_pose_1.png" alt="Sofia Pose 1" />
-  <img width="250" src="https://github.com/sbis04/Sofia/raw/master/screenshots/tri_pose_2.png" alt="Sofia Pose 2" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/sofia_track.png" alt="Sofia Track" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/tri_pose_1.png" alt="Sofia Pose 1" />
+  <img width="250" src="https://github.com/Abhishek-Verma7887/Sofia/raw/master/screenshots/tri_pose_2.png" alt="Sofia Pose 2" />
 </p>
 
 # About
